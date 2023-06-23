@@ -1,0 +1,65 @@
+form {
+  max-width: 500px;
+  margin: 60px auto;
+}
+
+h2 {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="file"] {
+  display: block;
+}
+
+.form-group .file-upload {
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+/*.form-group .file-upload p {*/
+/*  margin: 0;*/
+/*}*/
+
+.form-group .file-upload span {
+  color: #777;
+}
+
+.form-group .file-upload input[type="file"] {
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-group .file-upload .browse-btn {
+  padding: 8px 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.outer-div {
+  margin-top: 60px;
+}
+
+td input {
+  margin-left: 20px;
+  border: none;
+  font-weight: bold;
+}
+
+td span {
+  display: inline-block;
+  text-align: right;
+}
