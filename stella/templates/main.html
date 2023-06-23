@@ -1,0 +1,37 @@
+{% extends 'master.html' %}
+{% block head %}
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/stella_style.css' %}?v=1.1">
+{% endblock %}
+{% block body %}
+    <div class="bot-side">
+        <div class="msger" id="chat-container">
+            <div class="msger-chat" id="chatbox"></div>
+            <form class="msger-inputarea" id="chat-form"  method="POST" action="/process_message/">
+                {% csrf_token %}
+                <input type="text" id="chat-input" class="msger-input" required autocomplete="off" autofocus placeholder="Enter your message..." name="in">
+                <button type="submit" class="msger-send-btn">Send</button>
+            </form>
+        </div>
+    </div>
+    <div class="info-side">
+        <div class="user-info">
+            <br><br>
+            <br><br>
+            <div class="image-container">
+                {% load static %}
+                <img src="{% static 'profile_pics/'|add:pfp %}?v=1.1" alt="{{username}}">
+            </div>
+            <br>
+                <input type="hidden" value="{{pfp}}" id="profile-pic">
+                <h1>{{username}}</h1>
+                <br><br>
+                <br><br>
+                <h3>{{email}}</h3>
+                <br>
+                <h5>{{gender}}</h5>
+        </div>
+    </div>
+<!--    <script src="{% static 'js/jquery.min.js' %}"></script>-->
+    <script src="{% static 'js/stella_script.js' %}?v=1.1"></script>
+{% endblock %}

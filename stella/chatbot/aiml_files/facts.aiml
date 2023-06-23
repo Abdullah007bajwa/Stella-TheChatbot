@@ -1,0 +1,50 @@
+<aiml>
+
+    <category>
+        <pattern>* is male</pattern>
+        <template>
+            <set name="male"><formal><star /></formal></set>
+            Thanks for letting me know
+        </template>
+    </category>
+
+    <category>
+        <pattern>* is female</pattern>
+        <template>
+            <set name="female"><formal><star /></formal></set>
+            Thanks for letting me know
+        </template>
+    </category>
+
+    <category>
+        <pattern>* is * of *</pattern>
+        <template>
+            <set name="parent"><formal><star index="1"/></formal></set>
+            <set name="relation"><star index="2"/></set>
+            <set name="child"><formal><star index="3"/></formal></set>
+            Thanks for letting me know
+        </template>
+    </category>
+
+    <category>
+        <pattern>DO YOU KNOW THAT * is * of *</pattern>
+        <template>
+            <set name="parent"><formal><star index="1"/></formal></set>
+            <set name="relation"><star index="2"/></set>
+            <set name="child"><formal><star index="3"/></formal></set>
+            Thanks for letting me know
+        </template>
+    </category>
+
+    <category>
+        <pattern>reset facts</pattern>
+        <template>
+            <set name="male">unknown</set>
+            <set name="female">unknown</set>
+            <set name="parent">unknown</set>
+            <set name="child">unknown</set>
+            <set name="relation">unknown</set>
+            predicates resetted
+        </template>
+    </category>
+</aiml>

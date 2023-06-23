@@ -1,0 +1,80 @@
+{% extends 'master.html' %}
+
+{% block title %}-home{% endblock %}
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home_style.css' %}?v=1.1">
+{% endblock %}
+{% block body %}
+    <br>
+    <div class="cont">
+        <div class="form sign-in">
+            <h2>Welcome</h2>
+            <form method="post" id="signInForm" action="signin/">
+                {% csrf_token %}
+                <label>
+                    <span>Email</span>
+                    <input type="email" name="email" required/>
+                </label>
+                <label>
+                    <span>Password</span>
+                    <input type="password" name="key" required/>
+                </label>
+                <!-- <p class="forgot-pass">Forgot password?</p> -->
+                <button onclick="emptyDiv()" type="submit" class="submit">Sign In</button>
+            </form>
+        </div>
+        <div class="sub-cont">
+            <div class="img">
+                <div class="img__text m--up">
+                    <h3>Don't have an account? Please Sign up!</h3>
+                </div>
+                <div class="img__text m--in">
+                    <h3>If you already have an account, just sign in.</h3>
+                </div>
+                <center>
+                    <div id="errors"></div>
+                </center>
+                <div class="img__btn" onclick="emptyDiv()">
+                    <span class="m--up">Sign Up</span>
+                    <span class="m--in">Sign In</span>
+                </div>
+            </div>
+            <div class="form sign-up">
+                <h2>Create your Account</h2>
+                <form method="post" action="{% url 'signup' %}" id="passwordForm">
+                    {% csrf_token %}
+                    <label>
+                        <span>Name</span>
+                        <input type="text" name="name" required maxlength="100" />
+                    </label>
+                    <label>
+                        <span>Email</span>
+                        <input type="email" name="email" required maxlength="100" />
+                    </label>
+                    <label>
+                        <span>Password</span>
+                        <input type="password" name="key1" required id="password" maxlength="16" />
+                    </label>
+                    <label>
+                        <span>Confirm Password</span>
+                        <input type="password" name="key2" required id="confirmPassword" maxlength="16" />
+                    </label>
+                    <label>
+                        <span>Gender</span>
+                        <div style="display: flex; flex-direction: row;">
+                            <span style="color: black;">Male</span>
+                            <input type="radio" name="gender" value="male" inline />
+                            <span style="color: black;">Female</span>
+                            <input type="radio" name="gender" value="female" inline />
+                            <span style="color: black;">Other</span>
+                            <input type="radio" name="gender" value="other" inline />
+                        </div>
+                    </label>
+                    <button onclick="emptyDiv()" type="submit" class="submit">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/home_script.js' %}?v=1.1"></script>
+{% endblock %}

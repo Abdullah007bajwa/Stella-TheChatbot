@@ -1,0 +1,17 @@
+{% extends 'master.html' %}
+{% block head %}
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/stella_style.css' %}?v=1.1">
+{% endblock %}
+{% block body %}
+    <div id="chat-container">
+          <div id="chatbox"></div>
+          <form id="chat-form"  method="POST" action="/process_message/">
+                {% csrf_token %}
+                <input type="text" id="chat-input" name="in" placeholder="Type your message..." autocomplete="off">
+                <button type="submit">Send</button>
+          </form>
+    </div>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/stella_script.js' %}"></script>
+{% endblock %}
