@@ -23,7 +23,7 @@ def upload_to_neo4j(url, definition, context):
 
 
 def get_from_neo(context):
-    query = """Merge (kb:KnowledgeBase {title:$context}) return kb.definition, kb.url"""
+    query = """Match (kb:KnowledgeBase {title:$context}) return kb.definition, kb.url"""
     result = graph.run(query, context=context).data()
     return result
 

@@ -57,6 +57,10 @@ def reply(prompts, u_id):
         if asked_about != 'unknown':
             response = what_is(asked_about)
             myBot.respond('remove what predicate', u_id)
+        asked_about = myBot.get_predicate('who', u_id)
+        if asked_about != 'unknown':
+            response = what_is(asked_about, 'person')
+            myBot.respond('remove who predicate', u_id)
         responses += response + '. '
         print('response:', responses)
     return responses[:-2]

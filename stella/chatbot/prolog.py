@@ -56,7 +56,7 @@ def set_fact(fact, value, value2=None):
             gender = predict_gender(value2)
             new_fact = gender + '(' + value2.lower().replace(' ', '_') + ')'
             if new_fact not in knowledge:
-                create_fact(value2.lower().replace(' ', '_'), gender, uid)
+                # create_fact(value2.lower().replace(' ', '_'), gender, uid)
                 knowledge.insert(0, new_fact)
         result = knowledge_base.query(Expr(f'person({value})'))
         print('result of check on value:', result)
@@ -64,13 +64,13 @@ def set_fact(fact, value, value2=None):
             gender = predict_gender(value)
             new_fact = gender + '(' + value.lower().replace(' ', '_') + ')'
             if new_fact not in knowledge:
-                create_fact(value.lower().replace(' ', '_'), gender, uid)
+                # create_fact(value.lower().replace(' ', '_'), gender, uid)
                 knowledge.insert(0, new_fact)
         new_fact = fact + '(' + value.lower().replace(' ', '_') + ',' + value2.lower().replace(' ', '_') + ')'
-        create_relation(value, fact, value2, uid)
+        # create_relation(value, fact, value2, uid)
     else:
         new_fact = fact + '(' + value.lower().replace(' ', '_') + ')'
-        create_fact(value.lower().replace(' ', '_'), fact, uid)
+        # create_fact(value.lower().replace(' ', '_'), fact, uid)
     if new_fact not in knowledge:
         knowledge.insert(0, new_fact)
     knowledge_base(knowledge)

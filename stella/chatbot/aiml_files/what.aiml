@@ -8,10 +8,6 @@
         <template>searching on <set name="what"><star/></set></template>
     </category>
     <category>
-        <pattern>Who is *</pattern>
-        <template>searching on <set name="what"><star/></set></template>
-    </category>
-    <category>
         <pattern>^ do you know about *</pattern>
         <template><srai>What is <star index="2"/></srai></template>
     </category>
@@ -36,23 +32,11 @@
         <template><srai>What is <star/></srai></template>
     </category>
     <category>
-        <pattern>TELL ME WHO * IS</pattern>
-        <template><srai>What is <star/></srai></template>
-    </category>
-    <category>
         <pattern>^ WHAT * IS</pattern>
         <template><srai>What is <star index="2"/></srai></template>
     </category>
     <category>
-        <pattern>^ WHO * IS</pattern>
-        <template><srai>what is <star index="2"/></srai></template>
-    </category>
-    <category>
         <pattern>^ WHAT IS *</pattern>
-        <template><srai>What is <star index="2"/></srai></template>
-    </category>
-    <category>
-        <pattern>^ WHO IS *</pattern>
         <template><srai>What is <star index="2"/></srai></template>
     </category>
     <category>
@@ -143,7 +127,6 @@
         <pattern>DO YOU HAVE ^ IDEA ABOUT an *</pattern>
         <template><srai>What is <star index="2"/></srai></template>
     </category>
-
 
     <category>
         <pattern>remove what predicate</pattern>

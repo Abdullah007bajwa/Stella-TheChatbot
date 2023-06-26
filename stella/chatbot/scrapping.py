@@ -17,10 +17,10 @@ def identify_word_category(word):
     doc = nlp(word)
 
     for entity in doc.ents:
-        if entity.label_ == 'PERSON':
-            return 'person'
-        elif entity.label_ == 'ORG':
+        if entity.label_ == 'ORG':
             return 'company'
+        # elif entity.label_ == 'PERSON':
+        #     return 'person'
 
     return 'other'
 
@@ -118,12 +118,15 @@ def person_table(soup):
     return born, Died, Nationality, Spouse
 
 
-def scrap(word):
-    type_of = identify_word_category(word)
+def scrap(word, type_of_word=None):
+    if not type_of_word:
+        type_of_word = identify_word_category(word)
+    print(type_of_word)
     global context
     word = word.title()
     context = word
     result = get_from_neo(context)
+    print(result)
     if len(result) > 0:
         final = result[0]['kb.definition']
         url = result[0]['kb.url']
@@ -153,10 +156,10 @@ def scrap(word):
     if final == '\n':
         return None
 
-    if type_of == 'company':
+    if type_of_word == 'company':
         headquarter, founded, founder, website = company_table(soup)
         upload_org_neo4j(url, final, headquarter, founded, founder, website, context)
-    elif type_of == 'person':
+    elif type_of_word == 'person':
         born_date, died_date, nationality, spouses = person_table(soup)
         upload_person_neo4j(url, final, born_date, died_date, nationality, spouses, context)
     else:

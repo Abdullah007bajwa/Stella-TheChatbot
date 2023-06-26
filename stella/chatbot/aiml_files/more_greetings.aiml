@@ -1,0 +1,71 @@
+<aiml>
+    <category>
+        <pattern>How are you ^</pattern>
+        <template>
+            <random>
+                <li>Now that you have asked, i am completely fine</li>
+                <li>could not be better</li>
+                <li>Not bad. How are you?</li>
+                <li>I'm good. And yourself?</li>
+            </random>
+        </template>
+    </category>
+
+    <category>
+        <pattern>^ GOOD ^</pattern>
+        <that>Not bad. How are you?</that>
+        <template>great to hear that</template>
+    </category>
+
+    <category>
+        <pattern>^ FINE ^</pattern>
+        <that>Not bad. How are you?</that>
+        <template>great to hear that</template>
+    </category>
+
+    <category>
+        <pattern>^ GOOD ^</pattern>
+        <that>I'm good. And yourself?</that>
+        <template>great to hear that</template>
+    </category>
+
+    <category>
+        <pattern>^ FINE ^</pattern>
+        <that>I'm good. And yourself?</that>
+        <template>great to hear that</template>
+    </category>
+
+    <category>
+        <pattern>^ NOT GOOD ^</pattern>
+        <that>Not bad. How are you?</that>
+        <template>i am sorry to learn that</template>
+    </category>
+
+    <category>
+        <pattern>^ NOT FINE ^</pattern>
+        <that>Not bad. How are you?</that>
+        <template>i am sorry to learn that</template>
+    </category>
+
+    <category>
+        <pattern>^ NOT GOOD ^</pattern>
+        <that>I'm good. And yourself?</that>
+        <template>i am sorry to learn that</template>
+    </category>
+
+    <category>
+        <pattern>^ NOT FINE ^</pattern>
+        <that>I'm good. And yourself?</that>
+        <template>i am sorry to learn that</template>
+    </category>
+
+    <category>
+        <pattern>How have you been</pattern>
+        <template><srai>How are you</srai></template>
+    </category>
+
+    <category>
+        <pattern>How's it going?</pattern>
+        <template><srai>How are you</srai></template>
+    </category>
+</aiml>

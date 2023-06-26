@@ -1,0 +1,25 @@
+<aiml>
+    <category>
+        <pattern>Who is *</pattern>
+        <template>searching on <set name="who"><star/></set></template>
+    </category>
+    <category>
+        <pattern>TELL ME WHO * IS</pattern>
+        <template><srai>Who is <star/></srai></template>
+    </category>
+    <category>
+        <pattern>^ WHO * IS</pattern>
+        <template><srai>who is <star index="2"/></srai></template>
+    </category>
+    <category>
+        <pattern>^ WHO IS *</pattern>
+        <template><srai>Who is <star index="2"/></srai></template>
+    </category>
+
+    <category>
+        <pattern>remove who predicate</pattern>
+        <template>
+            who predicate: <set name="who">unknown</set>
+        </template>
+    </category>
+</aiml>

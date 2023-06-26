@@ -123,6 +123,7 @@ def about(requests):
 @login_required
 def process_message(requests):
     user_input = requests.POST.get('in')
+    print(requests.POST)
     user = requests.session['user_id']
     response = reply(user_input, user)
     data = {

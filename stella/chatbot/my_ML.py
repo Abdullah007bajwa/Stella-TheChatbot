@@ -1,8 +1,8 @@
-from .logistic_regression import lr
-from .naive_bayes import nb
-from .svm import svc
-from .dnn import dnn
-from .rnn import rnn
+from ML.logistic_regression import lr
+from ML.naive_bayes import nb
+from ML.svm import svc
+from ML.dnn import dnn
+from ML.rnn import rnn
 
 
 def predict_gender(name):
@@ -15,4 +15,5 @@ def predict_gender(name):
     print(result)
     return 'male' if result <= 0.5 else 'female'
 
+# print(predict_gender('ali'))
 # print(predict_gender('maria'))
