@@ -2,6 +2,7 @@ from pytholog import KnowledgeBase, Expr
 from pyaiml21 import Kernel
 from .my_ML import predict_gender
 from .my_neo4j import create_fact, create_relation
+import os, pickle
 
 # instantiating
 bot = Kernel()
@@ -23,7 +24,7 @@ knowledge = ['father(X, Y):- parent(X, Y), male(X)',
              'son(X, Y):- male(X), parent(Y, X)',
              'daughter(X, Y):- female(X), parent(Y, X)',
              'taya(X, Y):- brother(X, Z), father(Z, Y)',
-             'chachu(X, Y):- taya(X, Y)'
+             'chachu(X, Y):- taya(X, Y)',
              'phupho(X, Y):- sister(X, Z), father(Z, Y)',
              'khala(X, Y):- sister(X, Z), mother(Z, Y)',
              'mamoo(X, Y):- brother(X, Z), mother(Z, Y)',
@@ -44,35 +45,55 @@ knowledge = ['father(X, Y):- parent(X, Y), male(X)',
              'cousin(X, Y):- kid(X, Z), sibling(Z, A), parent(A, Y)',
              'person(X):- male(X)',
              'person(X):- female(X)']
+
+path = r'C:\Users\abdul\PycharmProjects\chatbot\chatbot\stella\chatbot\knowledge.pkl'
+if os.path.exists(path):
+    print('knowledge base found, learning')
+    with open(path, 'rb') as file:
+        knowledge = pickle.load(file)
+else:
+    print('knowledge base not found, writing rules')
+    with open(path, 'wb') as file:
+        pickle.dump(knowledge, file)
+
 knowledge_base(knowledge)
 
 
 def set_fact(fact, value, value2=None):
     fact = fact.lower()
+    v1 = value.lower().replace(' ', '_')
     if value2:
-        result = knowledge_base.query(Expr(f'person({value2})'))
+        v2 = value2.lower().replace(' ', '_')
+        # checking if person2 exists in knowledge base
+        result = knowledge_base.query(Expr(f'person({v2})'))
         print('result of check on value2:', result)
         if result[0] == 'No':
             gender = predict_gender(value2)
-            new_fact = gender + '(' + value2.lower().replace(' ', '_') + ')'
+            new_fact = gender + '(' + v2 + ')'
             if new_fact not in knowledge:
-                # create_fact(value2.lower().replace(' ', '_'), gender, uid)
+                create_fact(v2, gender, uid)
                 knowledge.insert(0, new_fact)
-        result = knowledge_base.query(Expr(f'person({value})'))
+        # checking if person1 exists in knowledge base
+        result = knowledge_base.query(Expr(f'person({v1})'))
         print('result of check on value:', result)
         if result[0] == 'No':
             gender = predict_gender(value)
-            new_fact = gender + '(' + value.lower().replace(' ', '_') + ')'
+            new_fact = gender + '(' + v1 + ')'
             if new_fact not in knowledge:
-                # create_fact(value.lower().replace(' ', '_'), gender, uid)
+                create_fact(v1, gender, uid)
                 knowledge.insert(0, new_fact)
-        new_fact = fact + '(' + value.lower().replace(' ', '_') + ',' + value2.lower().replace(' ', '_') + ')'
-        # create_relation(value, fact, value2, uid)
+        new_fact = fact + '(' + v1 + ',' + v2 + ')'
+        if new_fact not in knowledge:
+            create_relation(v1, fact, v2, uid)
+            knowledge.insert(0, new_fact)
     else:
-        new_fact = fact + '(' + value.lower().replace(' ', '_') + ')'
-        # create_fact(value.lower().replace(' ', '_'), fact, uid)
-    if new_fact not in knowledge:
-        knowledge.insert(0, new_fact)
+        new_fact = fact + '(' + v1 + ')'
+        if new_fact not in knowledge:
+            create_fact(v1, fact, uid)
+            knowledge.insert(0, new_fact)
+    # updating knowledge pickle file
+    with open(path, 'wb') as file:
+        pickle.dump(knowledge, file)
     knowledge_base(knowledge)
     print(knowledge[:10])
     bot.respond('reset facts', uid)

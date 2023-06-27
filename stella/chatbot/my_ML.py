@@ -1,8 +1,8 @@
-from ML.logistic_regression import lr
-from ML.naive_bayes import nb
-from ML.svm import svc
-from ML.dnn import dnn
-from ML.rnn import rnn
+from .ML.logistic_regression import lr
+from .ML.naive_bayes import nb
+from .ML.svm import svc
+from .ML.dnn import dnn
+from .ML.rnn import rnn
 
 
 def predict_gender(name):

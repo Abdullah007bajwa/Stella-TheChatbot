@@ -30,23 +30,16 @@ def get_from_neo(context):
 
 def create_fact(person, gender, uid):
     query = """
-    MATCH (n:BotUsers)
-    WHERE id(n) = $uid
-    MERGE (p:Person {name: $name, gender: $gender}),
-    MERGE (n)-[:KNOWS]->(p)
-    RETURN p
+    MATCH (n:BotUsers) where id(n)=$uid
+    MERGE (n)-[:Knows]->(:Person {name:$name, gender:$gender});
     """
     graph.run(query, name=person, gender=gender, uid=int(uid))
 
 
 def create_relation(person1, relation, person2, uid):
     query = """
-    MATCH (n:BotUsers)
-    WHERE id(n) = $uid
-    MERGE (p1:Person {name: $name1})
-    MERGE (p2:Person {name: $name2})
-    MERGE (p1)-[:$relation]->(p2)
-    MERGE (n)-[:KNOWS]->(p1)
-    MERGE (n)-[:KNOWS]->(p2)
+    MATCH (n:BotUsers) where id(n)={uid}
+    MATCH (p1:Person {{name:"{name1}"}})<-[:Knows]-(n)-[:Knows]->(p2:Person {{name:"{name2}"}})
+    MERGE (p1)-[r:{relation}]->(p2);
     """
-    graph.run(query, name1=person1, name2=person2, relation=relation, uid=int(uid))
+    graph.run(query.format(uid=uid, name1=person1, name2=person2, relation=relation.lower()+'_of'))

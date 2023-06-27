@@ -12,50 +12,54 @@
     </category>
 
     <category>
+        <pattern>GOOD</pattern>
+        <template>great to hear that</template>
+    </category>
+    <category>
+        <pattern>* GOOD</pattern>
+        <template><srai>GOOD</srai></template>
+    </category>
+    <category>
+        <pattern>GOOD *</pattern>
+        <template><srai>GOOD</srai></template>
+    </category>
+    <category>
+        <pattern>* GOOD *</pattern>
+        <template><srai>GOOD</srai></template>
+    </category>
+
+    <category>
+        <pattern>^ FINE ^</pattern>
+        <template>great to hear that</template>
+    </category>
+
+    <category>
         <pattern>^ GOOD ^</pattern>
-        <that>Not bad. How are you?</that>
         <template>great to hear that</template>
     </category>
 
     <category>
         <pattern>^ FINE ^</pattern>
-        <that>Not bad. How are you?</that>
-        <template>great to hear that</template>
-    </category>
-
-    <category>
-        <pattern>^ GOOD ^</pattern>
-        <that>I'm good. And yourself?</that>
-        <template>great to hear that</template>
-    </category>
-
-    <category>
-        <pattern>^ FINE ^</pattern>
-        <that>I'm good. And yourself?</that>
         <template>great to hear that</template>
     </category>
 
     <category>
         <pattern>^ NOT GOOD ^</pattern>
-        <that>Not bad. How are you?</that>
         <template>i am sorry to learn that</template>
     </category>
 
     <category>
         <pattern>^ NOT FINE ^</pattern>
-        <that>Not bad. How are you?</that>
         <template>i am sorry to learn that</template>
     </category>
 
     <category>
         <pattern>^ NOT GOOD ^</pattern>
-        <that>I'm good. And yourself?</that>
         <template>i am sorry to learn that</template>
     </category>
 
     <category>
         <pattern>^ NOT FINE ^</pattern>
-        <that>I'm good. And yourself?</that>
         <template>i am sorry to learn that</template>
     </category>
 

@@ -3,8 +3,6 @@ from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from .chatbot.bot import reply, initialization
 from .models import BotUsers
 from .decorators import login_required, logged_in
-from django.urls import reverse
-import os
 
 
 @logged_in
