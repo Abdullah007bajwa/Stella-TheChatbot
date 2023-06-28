@@ -5,8 +5,13 @@ from sklearn.metrics import accuracy_score
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
 
-
-def learn_dnn():
+path = r"C:\Users\abdul\PycharmProjects\chatbot\chatbot\stella\chatbot\ML\trained_models\dnn.pkl"
+if os.path.exists(path):
+    print('trained dnn available')
+    with open(path, 'rb') as file:
+        model_dnn, vectorizer = pickle.load(file)
+else:
+    print('learning dnn')
     # Step 1: Load the labeled dataset
     data = pd.read_csv(r'C:\Users\abdul\PycharmProjects\chatbot\chatbot\stella\chatbot\ML\names_dataset.csv')
 
@@ -46,20 +51,12 @@ def learn_dnn():
 
 # Step 8: Predict gender for new names
 def dnn(name):
-    path = r"C:\Users\abdul\PycharmProjects\chatbot\chatbot\stella\chatbot\ML\trained_models\dnn.pkl"
-    if os.path.exists(path):
-        print('trained dnn available')
-    else:
-        print('learning dnn')
-        learn_dnn()
-    with open(path, 'rb') as file:
-        model_dnn, vectorizer = pickle.load(file)
     name = [name.lower()]
     feature = vectorizer.transform(name)
     new_prediction = model_dnn.predict(feature.toarray())
     new_prediction = [1 if pred >= 0.5 else 0 for pred in new_prediction]
     return new_prediction[0]
 
-# learn_dnn()
+
 # print(dnn('ayesha'))
 # print(dnn('ahmer'))
