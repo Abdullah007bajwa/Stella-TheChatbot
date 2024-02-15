@@ -6,7 +6,7 @@ Its my first time uploading a project to github
 Stella Chatbot is a Django-based chatbot project that utilizes AIML, machine learning, web scraping, and Prolog to provide interactive conversations and knowledge retrieval. The chatbot is designed to communicate with users, answer questions, and perform various tasks based on the provided functionality.
 
 ## File Structure
-
+```
 chatbot
 ├── chatbot (Django's default)
 └── stella (custom app)
@@ -32,7 +32,7 @@ chatbot
     ├── views.py (Django views)
     └── manage.py (Django management script)
 venv (virtual environment)
-
+```
 ## Features
 
 ### Sign-In
@@ -102,21 +102,21 @@ python -m venv venv
 - On Windows: `venv\Scripts\activate`
 - On Linux/macOS: `source venv/bin/activate`
 4. Install the dependencies:
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 5. Set up the Neo4j database and configure the connection in the Django settings.
    
 6. Run migrations:
-python manage.py migrate
+`python manage.py migrate`
 
 7. Start the Django development server:
-python manage.py runserver
+`python manage.py runserver`
 
 ## Contributing
 Contributions are welcome! If you find any issues or want to add new features, please submit an issue or create a pull request.
 
 ## Credits
 I've surely taken a lot of help from internet
-Special thanks to @m-hussain for guiding throughout the project
+Special thanks to [@m-hussain](https://github.com/m-hussain) for guiding throughout the project
 ChatGPT is also a great tool for beginners like me to get things done
 Watched Code With Harry on YouTube for Django basics
