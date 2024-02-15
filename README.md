@@ -6,7 +6,7 @@ Its my first time uploading a project to github
 Stella Chatbot is a Django-based chatbot project that utilizes AIML, machine learning, web scraping, and Prolog to provide interactive conversations and knowledge retrieval. The chatbot is designed to communicate with users, answer questions, and perform various tasks based on the provided functionality.
 
 ## File Structure
-```
+`
 chatbot
 ├── chatbot (Django's default)
 └── stella (custom app)
@@ -32,7 +32,7 @@ chatbot
     ├── views.py (Django views)
     └── manage.py (Django management script)
 venv (virtual environment)
-```
+`
 ## Features
 
 ### Sign-In
@@ -48,7 +48,7 @@ venv (virtual environment)
 ### Profile Picture
 - During sign-up, users are prompted to upload a profile picture.
 - If the user chooses to skip uploading, a default picture based on their gender is set.
-- Profile pictures are saved in the `chatbot/static/profile_pics` directory.
+- Profile pictures are saved in the [stella/static/profile_pics](stella/static/profile_pics) directory.
 
 ### Decorators
 - Django decorators are used to restrict users from accessing the chatbot without logging in through the URL.
@@ -62,7 +62,7 @@ venv (virtual environment)
 ### AIML
 - AIML (Artificial Intelligence Markup Language) is used for basic chat functionality.
 - PyAIML21 is the Python module used for implementing AIML.
-- AIML files are stored in the `chatbot/stella/chatbot/aiml_files` directory.
+- AIML files are stored in the [stella/chatbot/aiml_files](stella/chatbot/aiml_files) directory.
 
 ### GET/SET Predicate
 - AIML get/set predicates are used to determine when to respond with AIML, Wikipedia, or Prolog knowledge base.
@@ -93,24 +93,24 @@ venv (virtual environment)
 ## Usage
 
 1. Clone the repository:
-git clone https://github.com/pmchohan/stella.git
+```git clone https://github.com/pmchohan/stella.git```
 
 2. Set up a virtual environment:
-python -m venv venv
+```python -m venv venv```
 
 3. Activate the virtual environment:
 - On Windows: `venv\Scripts\activate`
 - On Linux/macOS: `source venv/bin/activate`
 4. Install the dependencies:
-`pip install -r requirements.txt`
+```pip install -r requirements.txt```
 
 5. Set up the Neo4j database and configure the connection in the Django settings.
    
 6. Run migrations:
-`python manage.py migrate`
+```python manage.py migrate```
 
 7. Start the Django development server:
-`python manage.py runserver`
+```python manage.py runserver```
 
 ## Contributing
 Contributions are welcome! If you find any issues or want to add new features, please submit an issue or create a pull request.
