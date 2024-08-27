@@ -5,33 +5,33 @@ Stella Chatbot is your friendly, AI-powered companion, designed to assist in dai
 ## 🌟 Key Features
 
 ### 🚪 **User Authentication:**
-- **Sign-In:** Experience quick and secure login for registered users, with robust validations ensuring the correct email and password.
-- **Sign-Up:** Seamlessly create a new account, complete with Neo4j integration for user nodes and strong validations for email and password matching.
-- **Profile Picture:** Personalize your profile with an uploaded image or a default avatar based on gender.
+- **Sign-In:** Quick and secure login for registered users, with validations to ensure the correct email and password.
+- **Sign-Up:** Seamlessly create a new account, complete with Neo4j integration for user nodes and robust validations for email and password matching.
+- **Profile Picture:** Customize your profile with an uploaded image or choose a default based on gender.
 
 ### 🛡️ **Secure Access with Decorators:**
-- Protects chat access by ensuring users are logged in. If authenticated, users are directed straight to Stella’s chat; otherwise, they're prompted to sign in.
+- Protects chat access by ensuring users are logged in. If authenticated, users are directed straight to the chat; otherwise, they're prompted to sign in.
 
 ### 💬 **Interactive Chat Screen:**
-- A sleek chat interface that allows users to converse with Stella while viewing their profile details, making interactions personal and engaging.
+- A sleek chat interface allows users to converse with Stella while viewing their profile details, making the experience personal and engaging.
 
 ### 🧠 **AIML-Powered Conversations:**
-- Stella is powered by AIML (Artificial Intelligence Markup Language) for natural and responsive chat functionalities, driven by PyAIML21.
+- Leverages AIML (Artificial Intelligence Markup Language) for basic chat functionalities, powered by PyAIML21. AIML files are centrally stored and easily managed.
 
 ### 🎯 **Smart GET/SET Predicates:**
-- Stella intelligently selects the best response source (AIML, Wikipedia, or Prolog knowledge base) based on user queries, ensuring relevant and informative conversations.
+- Determines the best response source (AIML, Wikipedia, or Prolog knowledge base) based on user queries, making interactions more relevant.
 
 ### ✨ **Advanced Spell Checker:**
-- Stella features "Spello," a custom-trained spell checker, ensuring accurate responses tailored to her specific knowledge base.
+- Utilizes "Spello," a custom-trained spell checker, ensuring accurate responses tailored to Stella's specific knowledge base.
 
 ### 🌐 **Web Scraping with Wikipedia Integration:**
-- Retrieves and stores rich information from Wikipedia, enhancing future interactions by saving data in Neo4j.
+- Retrieves and stores rich information (like personal and organizational details) from Wikipedia, optimizing future interactions by saving data in Neo4j.
 
 ### 🔍 **Prolog Knowledge Base:**
-- Stella utilizes a robust Prolog system via Pytholog, allowing her to infer new knowledge from user-provided facts and relationships, with data stored securely in Neo4j.
+- Implements a robust Prolog system using Pytholog, allowing Stella to infer new knowledge from user-provided facts and relationships. This knowledge is preserved in a pickle file and integrated into Neo4j.
 
 ### 🤖 **Machine Learning Models:**
-- Stella evolves with each interaction, employing advanced models (Logistic Regression, Multinomial Naïve Bayes, SVM SVC, RNN, DNN) for predictive tasks like gender inference during Prolog relationship creation.
+- Employs cutting-edge models (Logistic Regression, Multinomial Naïve Bayes, SVM SVC, RNN, DNN) for predictive tasks like gender inference during Prolog relationship creation. These models ensure Stella evolves with each interaction, thanks to efficient learning and inference.
 
 ## 🚀 Getting Started
 
@@ -63,7 +63,45 @@ Stella Chatbot is your friendly, AI-powered companion, designed to assist in dai
    ```
 
 7. **Modify Paths for AIML and Spell Checker:**
-   - Ensure paths for AIML files and spell training data are correctly set up for full chatbot functionality.
+   - To make the chatbot fully active, update the paths in the code where AIML files and spell training data are referenced. For example:
+
+   ```python
+   from pyaiml21 import Kernel
+   from glob import glob
+   from spello.model import SpellCorrectionModel
+   from nltk.tokenize import sent_tokenize
+   from nltk.corpus import wordnet
+   from .scrapping import scrap
+   from .prolog import check_predicates
+
+   myBot = Kernel()
+   corrector = SpellCorrectionModel(language="en")
+
+   def initialization(username, u_id):
+       u_id = str(u_id)
+       global myBot
+       myBot = Kernel()
+       aimls = glob(r"C:\Users\YourUsername\YourProjectPath\chatbot\stella\chatbot\aiml_files\*")
+       for aiml in aimls:
+           print(aiml)
+           myBot.learn(aiml)
+       myBot.respond('remove what predicate', u_id)
+       myBot.setPredicate('username', username, sessionID=u_id)
+       myBot.respond('reset questions', u_id)
+       myBot.respond('reset facts', u_id)
+       spell_checker()
+
+   def spell_checker():
+       global corrector
+       corrector = SpellCorrectionModel(language="en")
+       with open(r'C:\Users\YourUsername\YourProjectPath\chatbot\stella\chatbot\spell_training_data.txt', 'r') as file:
+           data = file.readlines()
+
+       data = [i.strip() for i in data]
+       corrector.train(data)
+   ```
+
+   - Replace `C:\Users\YourUsername\YourProjectPath` with the appropriate path on your machine.
 
 8. **Launch the Development Server:**
    ```bash
@@ -72,6 +110,6 @@ Stella Chatbot is your friendly, AI-powered companion, designed to assist in dai
 
 ## 🤝 Contributing
 
-Join the development of Stella! Whether you spot an issue or have a new feature idea, we welcome your contributions through issues or pull requests. Let’s enhance Stella together!
+We welcome contributions! Whether you spot an issue or have a fantastic new feature idea, please submit an issue or create a pull request. Let's build Stella together!
 
 ---
